@@ -16,7 +16,8 @@ export default {
 
 <style scoped lang="scss">
 .auth_app{
-  background: #2f2d72;
+  background-image: url("/bg1.png");
+  background-size: cover;
 }
 
 

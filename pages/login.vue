@@ -8,9 +8,10 @@
   <v-row class="auth_row">
 
     <v-col md="6" xl="6" class="pa-5 text-center justify-center">
-      <v-card class="white px-4" style="padding: 20px">
-        <img src="/logo.png" width="300px"/>
-
+      <v-card class="white px-4 py-4">
+        <div class="d-flex justify-center">
+          <v-img src="/logo.png" width="100%" max-width="280px" />
+        </div>
         <h1 class="main-color py-2 mt-4">Вход на портал</h1>
         <form class="my-4">
           <v-text-field
@@ -57,7 +58,7 @@
         <div class="text-right">
           <NuxtLink class="text-decoration-none" to="/register">Нет, аккаунта? Зарегистрироваться</NuxtLink>
           <br>
-          <a>Забыли пароль</a>
+          <NuxtLink class="text-decoration-none" to="/forget">Забыли пароль?</NuxtLink>
         </div>
 
 
