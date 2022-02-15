@@ -1,14 +1,21 @@
 <template>
-<div>
-  <p>HI!</p>
-  <v-btn @click="$auth.logout()">Выйти</v-btn>
+<section>
+  <v-container>
+    <v-row>
 
-</div>
+
+
+
+    </v-row>
+  </v-container>
+
+</section>
 </template>
 
 <script>
 export default {
   name: "cabinet",
+  layout:"user_layout",
   middleware:["auth","user"],
 }
 </script>

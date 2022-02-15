@@ -121,7 +121,7 @@
               :error-messages="fails.password"
             >
             </v-text-field>
-            <v-btn class="main-button w-100" @click="register">
+            <v-btn class="main-button w-100 text-white" @click="register">
               Регистрация
             </v-btn>
 

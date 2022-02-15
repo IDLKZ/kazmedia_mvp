@@ -32,7 +32,7 @@
                 :error="this.fails.email != null"
                 :error-messages="this.fails.email"
               ></v-text-field>
-              <v-btn class="main-button w-100" @click="login">
+              <v-btn class="main-button w-100" @click="forget">
                 Сбросить пароль
               </v-btn>
 
@@ -73,12 +73,31 @@ export default {
     return{
       form:{
         email:"",
-        password:"",
       },
       show:false,
       fails:{}
     }
   },
+  methods:{
+    async forget(){
+      try{
+        await this.$axios.post("auth/forget",this.form);
+        this.$toast.success("Письмо с ссылкой для сброса пароля успешно отправлено");
+        this.email = "";
+      }
+      catch ({response}) {
+        if(response.status == 400){
+          this.$toast.error("Неверно заполнены поля");
+          if(response.data != null){
+            this.fails = response.data.data;
+          }
+        }
+        else{
+          this.$toast.error("Упс, что-то пошло не так")
+        }
+      }
+    }
+  }
 }
 </script>
 

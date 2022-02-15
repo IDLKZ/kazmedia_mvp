@@ -50,7 +50,7 @@
           :error-messages="this.fails.password"
           >
           </v-text-field>
-          <v-btn class="main-button w-100" @click="login">
+          <v-btn class="main-button w-100 text--white" @click="login">
             Вход
           </v-btn>
 
