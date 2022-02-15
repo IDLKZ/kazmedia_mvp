@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body{
+  font-family: "Roboto", sans-serif!important;
+}
+
+.main-color{
+  color: #2f2d72;
+}
+.main-button{
+  background: #2f2d72!important;
+}
+.w-100{
+  width: 100%;
+}
