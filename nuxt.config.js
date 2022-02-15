@@ -32,6 +32,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@plugins/v-mask.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -53,6 +54,7 @@ export default {
 
   toast: {
     position: 'top-right',
+    duration:3000,
     register: [ // Register custom toasts
       {
         name: 'my-error',

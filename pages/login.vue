@@ -12,7 +12,7 @@
         <img src="/logo.png" width="300px"/>
 
         <h1 class="main-color py-2 mt-4">Вход на портал</h1>
-        <form class="my-4" @submit.prevent="()=>{}">
+        <form class="my-4">
           <v-text-field
             prepend-inner-icon="fas fa-envelope"
             outlined
@@ -27,6 +27,8 @@
             background-color="white"
             light
             solo
+            :error="this.fails.email != null"
+            :error-messages="this.fails.email"
           ></v-text-field>
           <v-text-field
           prepend-inner-icon="fas fa-lock"
@@ -43,6 +45,8 @@
           :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
           hint="Более 6 знаков"
           @click:append="show = !show"
+          :error="this.fails.password != null"
+          :error-messages="this.fails.password"
           >
           </v-text-field>
           <v-btn class="main-button w-100" @click="login">
@@ -51,7 +55,7 @@
 
         </form>
         <div class="text-right">
-          <a>Нет, аккаунта? Зарегистрироваться</a>
+          <NuxtLink class="text-decoration-none" to="/register">Нет, аккаунта? Зарегистрироваться</NuxtLink>
           <br>
           <a>Забыли пароль</a>
         </div>
@@ -84,7 +88,8 @@ export default {
         email:"",
         password:"",
       },
-      show:false
+      show:false,
+      fails:{}
     }
   },
   methods:{
@@ -94,8 +99,16 @@ export default {
         await this.$auth.loginWith("local", {data: this.form})
         this.$toast.success("Добро пожаловать!");
       }
-      catch (e) {
-        this.$toast.error("Упс, что-то пошло не так")
+      catch ({response}) {
+        if(response.status == 400){
+          this.$toast.error("Неверно заполнены поля");
+          if(response.data){
+            this.fails = response.data.data;
+          }
+        }
+        else{
+          this.$toast.error("Упс, что-то пошло не так")
+        }
       }
     }
   }
