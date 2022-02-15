@@ -67,6 +67,8 @@
 export default {
   name: "index",
   layout:"auth_layout",
+  middleware:["guest"],
+
   data(){
     return{
       form:{

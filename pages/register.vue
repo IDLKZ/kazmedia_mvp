@@ -153,6 +153,7 @@ export default {
 
   name: "register",
   layout:"auth_layout",
+  middleware:["guest"],
 
   data(){
     return{

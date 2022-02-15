@@ -1,19 +1,15 @@
 <template>
 <div>
   <p>HI!</p>
-  <pre>
-    {{$auth.user.role_id}}
-  </pre>
-  <v-btn @click="$auth.logout()">
-    logout
+  <v-btn @click="$auth.logout()">Выйти</v-btn>
 
-  </v-btn>
 </div>
 </template>
 
 <script>
 export default {
-  name: "cabinet"
+  name: "cabinet",
+  middleware:["auth","user"],
 }
 </script>
 

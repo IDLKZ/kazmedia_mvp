@@ -82,7 +82,7 @@
 export default {
   name: "login",
   layout:"auth_layout",
-
+  middleware:["guest"],
   data(){
     return{
       form:{
