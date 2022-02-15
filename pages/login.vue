@@ -99,6 +99,16 @@ export default {
         this.$toast.show('Вход...',)
         await this.$auth.loginWith("local", {data: this.form})
         this.$toast.success("Добро пожаловать!");
+        // console.log(this.$auth.user.role_id)
+        if (this.$auth.user.role_id === 1){
+          await this.$router.push({
+            path: "/manager"
+          })
+        } else {
+          await this.$router.push({
+            path: "/user/cabinet"
+          })
+        }
       }
       catch ({response}) {
         if(response.status == 400){

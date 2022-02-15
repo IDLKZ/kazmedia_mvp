@@ -1,17 +1,16 @@
 <template>
-<section>
-
-  <div>
-
-  </div>
-
-</section>
+  <section>
+    <div>
+      <p>HI!</p>
+      <v-btn @click="$auth.logout()">Выйти</v-btn>
+    </div>
+  </section>
 </template>
 
 <script>
 export default {
   name: "index",
-  middleware:["auth","admin"]
+  middleware: ["auth", "admin"]
 }
 </script>
 

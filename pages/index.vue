@@ -65,8 +65,7 @@
           <v-spacer />
           <v-btn
             color="primary"
-            nuxt
-            to="/inspire"
+            @click="$auth.logout()"
           >
             Continue
           </v-btn>
@@ -78,6 +77,7 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  middleware: ['auth']
 }
 </script>
