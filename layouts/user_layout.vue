@@ -25,7 +25,7 @@
           v-for="item in items"
           :key="item.title"
           link
-
+          :to="item.to"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -76,7 +76,7 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'Подать заявку',
-          to: '/inspire'
+          to: '/user/request/create'
         },
         {
           icon: 'mdi-chart-bubble',
