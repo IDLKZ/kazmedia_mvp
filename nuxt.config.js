@@ -34,7 +34,7 @@ export default {
   plugins: [
     '@plugins/v-mask.js',
     '~/mixins/global.js',
-    '@plugins/calendar.js',
+    '@plugins/calendar.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -69,7 +69,7 @@ export default {
   },
 
   axios: {
-    baseURL: "http://127.0.0.1:8000/api",
+    baseURL: "https://back.techdemo.kz/api",
     credentials: false,
     proxyHeaders: false,
   },

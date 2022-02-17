@@ -561,7 +561,7 @@
 
               <v-divider></v-divider>
               <div class="form-group">
-                <v-btn class="main-button">Подать заявку</v-btn>
+                <v-btn class="main-button" @click="sendOrder">Подать заявку</v-btn>
               </div>
             </template>
 
@@ -852,6 +852,13 @@ export default {
           this.$toast.error("Упс, что-то пошло не так")
         }
       }
+    },
+
+    async sendOrder(){
+      this.$toast.success('Ваша заявка успешно отправлена!')
+      await this.$router.push({
+        path: "/user/history"
+      })
     }
   },
 

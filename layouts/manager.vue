@@ -1,51 +1,64 @@
 <template>
-  <div>
-    <v-app-bar
-      color="deep-purple accent-4"
-      dense
-      dark
-    >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+  <v-app dark>
+<!--    <v-navigation-drawer-->
+<!--      v-model="drawer"-->
+<!--      absolute-->
+<!--      temporary-->
+<!--      app-->
+<!--      dark-->
+<!--    >-->
+<!--      <v-list-item>-->
+<!--        <v-list-item-avatar>-->
+<!--          <v-img src="/favicon.jpg"></v-img>-->
+<!--        </v-list-item-avatar>-->
 
-      <v-toolbar-title>Page title</v-toolbar-title>
+<!--        <v-list-item-content>-->
+<!--          <v-list-item-title>{{$auth.user.name}}</v-list-item-title>-->
+<!--          <v-list-item-subtitle>{{$auth.user.email}}</v-list-item-subtitle>-->
+<!--        </v-list-item-content>-->
+<!--      </v-list-item>-->
 
-      <v-spacer></v-spacer>
+<!--      <v-divider></v-divider>-->
 
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
+<!--      <v-list dense>-->
+<!--        <v-list-item-->
+<!--          v-for="item in items"-->
+<!--          :key="item.title"-->
+<!--          link-->
+<!--          :to="item.to"-->
+<!--        >-->
+<!--          <v-list-item-icon>-->
+<!--            <v-icon>{{ item.icon }}</v-icon>-->
+<!--          </v-list-item-icon>-->
+
+<!--          <v-list-item-content>-->
+<!--            <v-list-item-title>{{ item.title }}</v-list-item-title>-->
+<!--          </v-list-item-content>-->
+<!--        </v-list-item>-->
+<!--      </v-list>-->
+<!--    </v-navigation-drawer>-->
+
+    <v-app-bar app dark>
+<!--      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>-->
+      <img class="mr-4" src="/logo_kmo.png" width="100px"/>
+      <v-btn icon class="ms-auto">
+        <v-icon color="white" @click="$auth.logout()">mdi-logout</v-icon>
       </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-menu
-        left
-        bottom
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            icon
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item
-            v-for="n in 5"
-            :key="n"
-            @click="() => {}"
-          >
-            <v-list-item-title>Option {{ n }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
     </v-app-bar>
-    <Nuxt/>
-  </div>
+    <v-main>
+      <v-container>
+        <Nuxt />
+      </v-container>
+    </v-main>
+
+
+    <v-footer
+      :absolute="!fixed"
+      app
+    >
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>

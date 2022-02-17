@@ -42,9 +42,13 @@
 
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <img class="mr-4" src="/logo_kmo.png" width="100px"/>
+
+      <v-btn icon class="ms-auto">
+        <v-icon color="white" @click="$auth.logout()">mdi-logout</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>
@@ -71,7 +75,7 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Главная',
-          to: '/'
+          to: '/user/cabinet'
         },
         {
           icon: 'mdi-chart-bubble',
@@ -81,7 +85,7 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'История заявок',
-          to: '/inspire'
+          to: '/user/history'
         },
         {
           icon: 'fas fa-cog',
@@ -97,3 +101,6 @@ export default {
   }
 }
 </script>
+<style scoped>
+v-app-bar-nav-icon{color: white}
+</style>

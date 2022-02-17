@@ -17,7 +17,7 @@ body{
 .v-picker__title{
   color: #ea4b4b!important;
 }
-.v-btn::before{color: black!important;}
-.v-btn__content {color: black!important;}
+/*.v-btn::before{color: black!important;}*/
+/*.v-btn__content {color: black!important;}*/
 .theme--light.v-calendar-events .v-event-timed{background-color: azure;padding: 10px}
 .v-calendar .v-event-summary{font-size: 18px}
