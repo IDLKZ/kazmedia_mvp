@@ -1,13 +1,17 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="3">
+      <v-col
+        sm="12"
+        md="3">
         <v-date-picker v-model="picker"
           locale="ru"
           color="green lighten-1"
         ></v-date-picker>
       </v-col>
-      <v-col cols="9">
+      <v-col
+        sm="12"
+        md="9">
         <v-row class="fill-height">
           <v-col>
 
