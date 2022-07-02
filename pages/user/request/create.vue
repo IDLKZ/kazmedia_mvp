@@ -9,6 +9,14 @@
             <div class="my-2">
               <h1>Создать заявку</h1>
             </div>
+            <template v-if="fails.length > 0">
+              <v-alert
+                type="error"
+                v-for="error in Object.entries(this.fails)"
+              >
+                {{error[0]}} - {{error[1]}}
+              </v-alert>
+            </template>
             <!--            Выбор комнаты-->
             <div class="form-group">
               <v-autocomplete
@@ -835,12 +843,22 @@ export default {
         let endTime  = moment(this.forms.EndDate, 'YYYYMMDDHHmmss');
         var duration = moment.duration(endTime.diff(startTime));
         var hours = duration.asHours() + 1;
-        this.forms.Sum = hours * result.data.price;
-        this.isReady = true;
-
+        if(result != null){
+          if(result.success){
+            this.forms.Sum = hours * result.data.price;
+            this.isReady = true;
+          }
+          else{
+            this.fails = result.errors;
+            this.$toast.error("Неверно заполнены поля");
+          }
+        }
+        else{
+          this.fails = result.errors;
+          this.$toast.error("Упс, что-то пошло не так")
+        }
       }
       catch (e) {
-        console.log(e);
         if(e.response.status == 400){
           this.$toast.error("Неверно заполнены поля");
           if(e.response.data){
