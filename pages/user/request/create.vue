@@ -17,6 +17,44 @@
                 {{error[0]}} - {{error[1]}}
               </v-alert>
             </template>
+            <!-- Наименование программы -->
+            <div class="form-group">
+              <v-text-field
+                prepend-inner-icon="fas fa-pen"
+                outlined
+                v-model="forms.Program"
+                label="Наименование программы"
+                required
+                clearable
+                color="#2f2d72"
+                type="text"
+                class="custom-input"
+                background-color="white"
+                light
+                solo
+                :error="fails.Program != null"
+                :error-messages="fails.Program"
+              ></v-text-field>
+            </div>
+            <!--            Выбор тип запроса-->
+
+            <div class="form-group">
+              <v-select
+                :items="requestsTypes"
+                :item-text="'title'"
+                :item-value="'id'"
+                v-model="forms.RequestType"
+                label="Тип заявки"
+                outlined
+                solo
+                :error="fails.RequestType != null"
+                :error-messages="fails.RequestType"
+              >
+
+              </v-select>
+
+            </div>
+
             <!--            Выбор комнаты-->
             <div class="form-group">
               <v-autocomplete
@@ -714,7 +752,15 @@ export default {
       start: "",
       end: "",
       fails:{},
+      requestsTypes:[
+        {"id":1,"title":"Заявка на студию"},
+        {"id":2,"title":"Заявка на выезд"},
+        {"id":3,"title":"Заявка на проект"},
+        {"id":4,"title":"Заявка на выезд"},
+      ],
       forms: {
+        Program:"",
+        RequestType:1,
         RoomID: "",
         RequestDate: "",
         StartDate: "",
@@ -873,10 +919,33 @@ export default {
     },
 
     async sendOrder(){
-      this.$toast.success('Ваша заявка успешно отправлена!')
-      await this.$router.push({
-        path: "/user/history"
-      })
+      try{
+        this.fails = {};
+        let result =await  this.$axios.$post("/CreateRequest",this.forms);
+        if(result.success == true){
+          this.$toast.success("Успешно создана заявка, номер заявки #" + result.data)
+        }
+        else{
+          this.$toast.error("Упс, что-то пошло не так" + result.message)
+        }
+        this.$router.push('/user/cabinet')
+
+      }
+      catch (e) {
+        if(e.response.status == 400){
+          this.$toast.error("Неверно заполнены поля");
+          if(e.response.data){
+            this.fails = e.response.data.data;
+          }
+        }
+        else{
+          console.log(e);
+          this.$toast.error("Упс, что-то пошло не так")
+        }
+      }
+
+
+
     }
   },
 
